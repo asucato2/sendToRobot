@@ -1,6 +1,7 @@
 #!/bin/bash
 #SENDTOROBOT#
 #DEVELOPED BY ANDREW SUCATO#
+#Version 2.0#
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color

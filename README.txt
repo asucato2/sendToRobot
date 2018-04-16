@@ -40,6 +40,7 @@ Behavior expectations
 -Should send error message if SCP transfer fails 
 -Error messages should be red 
 -If successful, a message should be displayed saying the file was sent successfully (in green) 
--Should play success sound if successful and error sound if error (except incorrect usage)
+-Prompt installation of mpg132 if not installed
+-Should play success sound if successful and error sound if error (except incorrect usage error)
 
 Disclaimer: By using this product, you agree that you are solely responsible for any changes and/or damages to the robot.
