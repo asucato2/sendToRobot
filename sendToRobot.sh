@@ -7,8 +7,7 @@ NC='\033[0m' # No Color
 
 if [ ! -e  $1 ] || [ $# -eq 0 ]
 then
-	printf "${RED}Usage: send filename, playing sound${NC}\n"
-        canberra-gtk-play --file=/usr/share/sounds/freedesktop/stereo/phone-outgoing-busy.oga
+	printf "${RED}Usage: send filename${NC}\n"
 	exit 
 fi
 
@@ -18,8 +17,8 @@ make -j4
 if [ $? -ne 0 ]
 then
         printf "${RED}ERROR: CMAKE failed${NC}\n"
-	canberra-gtk-play --file=/usr/share/sounds/freedesktop/stereo/phone-outgoing-busy.oga
-        exit
+        mpg123 /home/ansucato/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
+	exit
 fi
 
 myDir=$PWD
@@ -32,10 +31,10 @@ scp $1 astrobot@192.168.11.10:~/$robotDir
 if [ $? -ne 0 ]
 then
 	printf "${RED}ERROR: scp failed${NC}\n"
-        canberra-gtk-play --file=/usr/share/sounds/freedesktop/stereo/phone-outgoing-busy.oga
+	mpg123 /home/ansucato/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
 	exit
 fi
 
 printf "${GREEN}$1 sent successfully!${NC}\n"
-canberra-gtk-play --file=/usr/share/sounds/freedesktop/stereo/complete.oga
+canberra-gtk-play --file=/home/ansucato/bin/sendToRobot/lib/sounds/yipee.wav
 
