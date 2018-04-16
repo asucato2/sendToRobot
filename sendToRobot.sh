@@ -11,6 +11,11 @@ then
 	exit 
 fi
 
+if ! which mpg123 > /dev/null; then
+	echo -e ${RED}Please install mpg123. Run \'sudo apt-get install mpg123\'${NC}
+	exit
+fi
+
 # run cmake in current local directory
 make -j4
 
