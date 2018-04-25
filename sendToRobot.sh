@@ -22,7 +22,7 @@ make -j4
 if [ $? -ne 0 ]
 then
         printf "${RED}ERROR: CMAKE failed${NC}\n"
-        mpg123 /home/ansucato/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
+        mpg123 ~/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
 	exit
 fi
 
@@ -36,10 +36,10 @@ scp $1 astrobot@192.168.11.10:~/$robotDir
 if [ $? -ne 0 ]
 then
 	printf "${RED}ERROR: scp failed${NC}\n"
-	mpg123 /home/ansucato/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
+	mpg123 ~/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
 	exit
 fi
 
 printf "${GREEN}$1 sent successfully!${NC}\n"
-canberra-gtk-play --file=/home/ansucato/bin/sendToRobot/lib/sounds/yipee.wav
+canberra-gtk-play --file=~/bin/sendToRobot/lib/sounds/yipee.wav
 
