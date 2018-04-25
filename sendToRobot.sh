@@ -5,6 +5,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+DIR="$(dirname "$(readlink -f "$0")")"
+
 if [ ! -e  $1 ] || [ $# -eq 0 ]
 then
 	printf "${RED}Usage: send filename${NC}\n"
@@ -22,7 +24,7 @@ make -j4
 if [ $? -ne 0 ]
 then
         printf "${RED}ERROR: CMAKE failed${NC}\n"
-        mpg123 ~/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
+        mpg123 ${DIR}/lib/sounds/missionFailed.mp3 &> /dev/null &
 	exit
 fi
 
@@ -32,14 +34,14 @@ robotDir=`echo $PWD | sed 's/.*\(autonomy\)/\1/g'`
 
 # send file to robot *setup ssh key so that you don't need to enter password*
 scp $1 astrobot@192.168.11.10:~/$robotDir
-
+#
 if [ $? -ne 0 ]
 then
 	printf "${RED}ERROR: scp failed${NC}\n"
-	mpg123 ~/bin/sendToRobot/lib/sounds/missionFailed.mp3 &> /dev/null &
+	mpg123 ${DIR}/lib/sounds/missionFailed.mp3 &> /dev/null &
 	exit
 fi
 
 printf "${GREEN}$1 sent successfully!${NC}\n"
-canberra-gtk-play --file=~/bin/sendToRobot/lib/sounds/yipee.wav
+canberra-gtk-play --file=${DIR}/lib/sounds/yipee.wav
 
